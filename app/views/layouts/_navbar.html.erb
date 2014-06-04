@@ -1,0 +1,23 @@
+<nav role="navigation" class="navbar navbar-default">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
+	        <%= link_to "PhotoKombat", root_path, :class=>"navbar-brand" %>
+	    </div>
+	    <!-- Collection of nav links and other content for toggling -->
+	    <div id="navbarCollapse" class="collapse navbar-collapse">
+	        <ul class="nav navbar-nav">
+	            <li class="active"><%= link_to "Home", root_path %></li>
+	            <li><%= link_to "About", about_path %></li>
+	            <li><%= link_to "Top", top_path %></li>
+	        </ul>
+	        <ul class="nav navbar-nav navbar-right">
+	            <li><%= link_to "Login", '#' %></li>
+	        </ul>
+	    </div>
+	</nav>
