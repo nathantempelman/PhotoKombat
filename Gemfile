@@ -6,6 +6,8 @@ gem 'rails', '4.1.1'
 
 #twitter bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
+#password hashing gem
+gem 'bcrypt-ruby', '~>3.1.5'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
