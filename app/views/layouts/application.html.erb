@@ -6,10 +6,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
+
 </head>
   	<body>
     	<%= render 'layouts/navbar'%>
     	<div class="container">
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key) %>"><%= value %></div>
+          <% end %>
       		<%= yield %>
       		<%= render 'layouts/footer' %>
     	</div>
