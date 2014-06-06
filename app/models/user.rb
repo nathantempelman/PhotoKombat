@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-	 before_create :create_remember_token
+	before_create :create_remember_token
 	has_many :pictures
 	validates :name, presence: true, length: {minimum: 3, maximum: 22},
 							uniqueness: true
 	#validates :password, presence: true, length: {minimum: 6, maximum: 22}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+\.[a-z]+\z/i
-  	validates :email, format: { with: VALID_EMAIL_REGEX }
+  	validates :email, :allow_blank => true, format: { with: VALID_EMAIL_REGEX }
   	has_secure_password
   	validates :password, length: {minimum: 6}
 
