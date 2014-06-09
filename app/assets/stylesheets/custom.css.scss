@@ -53,12 +53,12 @@ footer {
 }
 /* forms */
 
-/*input, textarea, select, .uneditable-input {
+input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
-}*/
+}
 
 input {
   height: auto !important;
@@ -73,6 +73,13 @@ input {
 }
 
 .field_with_errors {
-  @extend .form-group;
-  @extend .has-error;
+  
+  input{
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  }
+  label {
+    color: #a94442;
+  }
 }
