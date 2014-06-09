@@ -1,0 +1,39 @@
+Elo Algorithm
+
+let a and b be the two "contestants". Ea is the expected probability that a will win. 
+Therefore, 0<=Ea<=1, Ea+Eb = 1
+
+Just some basic probability. Now, we'll use Ra as the current rating of a
+
+Ea = 1/(1+10^((Rb-Ra)/400))
+
+ Since Ra is the current rating of a, R'a will be the rating of a after this match. Also, Aa will be the Actual result of the match. 1 if a wins, 0 if a does not.
+
+R'a = Ra + k(Aa - Ea)
+
+k is a linear balancing factor. This can be increased if an image is new. Allows images to get into their poper rating faster. As more ratings build up, the current rating is more reliable and k can be brought back down. From the formula, we can see that k is the highest possible rating change in a match. I'm thinking 50 to start? After about 30 ratings drop it down, to a minimum of 15ish
+
+Do I allow k to be different for a and b? Or do I pick the lowest/highest k? Average them? If k is a single constant for each competition, then the system would logically stay in equilibrium with the average being the starting rating for any picture. But I suppose certain pictures will inevitably have to be banned because the internet. I think either way, it should be normally distributed  around 1500. Just liked the idea of perfect symmetry I guess.
+
+So I allow them to be different.
+
+Alright then, rough draft.
+
+def k_of_(picture)
+	if picture.timesRated < 10 do
+		50
+	else if picture.timesRated <30
+		25
+	else
+		12
+end def
+def expected_first_beats_second(picture first, picture second)
+	1/(1+10^((second.rating-first.rating)/400))
+end def
+
+Ea = expected_first_beats_second(picA,picB)
+
+picA.rating += k_of_(picA)*(win-Ea)
+picB.rating += k_of_(picB)*(win-(1-Ea))
+
+(sic)
