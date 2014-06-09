@@ -31,6 +31,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the site!"
       redirect_to @user
     else
+      flash.now[:error] = @user.errors.full_messages.join("<br/>").html_safe
       render 'new'
     end
   end
