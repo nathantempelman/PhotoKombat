@@ -1,27 +1,35 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="row">
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <div class=".col-xs-4 .col-sm-4 and .col-md-4">
+    <h1>
+      <strong><%= @user.name %></strong>
+    </h1>
+  </div>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password_digest %>
-</p>
+  <div class=".col-xs-4 .col-sm-4 and .col-md-4">
+    <%if !@user.email.blank? %>
+      Email:
+      <%= @user.email %>
+    <%end%>
+  </div>
 
+  <div class=".col-xs-4 .col-sm-4 and .col-md-4">
+      Password:
+      <%= @user.password_digest %>
+  </div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>
+
 
 <% if @user.pictures.any? %>
-	<div class="row">
-		<% @user.pictures.each do |picture| %>
-	      <%= image_tag(picture.url, :class => "col-md-1")%>
-	 	<%end%>
+  <div class="row">
+    <div class=".col-xs-4 .col-sm-4 and .col-md-4">
+    	<% @user.pictures.each do |picture| %>
+    	   <%= image_tag(picture.url, :class => "col-md-1 thumbnail img-responsive")%>
+    	<%end%>
+    </div>
 	</div>
 <%end%>

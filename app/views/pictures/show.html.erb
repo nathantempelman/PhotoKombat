@@ -6,13 +6,12 @@
 </p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @picture.url %>
+  <%= image_tag(@picture.url, :class => "thumbnail")%>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @picture.user_id %>
+  <%= User.find(@picture.user_id).name %>
 </p>
 
 <p>

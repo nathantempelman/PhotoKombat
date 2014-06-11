@@ -26,7 +26,7 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     if signed_in?
-      @picture.user = @user
+      @picture.user = current_user
     end
     respond_to do |format|
       if @picture.save
