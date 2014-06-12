@@ -8,4 +8,5 @@ module ApplicationHelper
 	        else level
 	    end
 	end
+
 end

@@ -2,7 +2,7 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @picture.name %>
+  <%= @picture.name  %>
 </p>
 
 <p>
@@ -11,7 +11,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= User.find(@picture.user_id).name %>
+  <%= @picture.user_id ? User.find(@picture.user_id).name : "Anonymous" %>
 </p>
 
 <p>

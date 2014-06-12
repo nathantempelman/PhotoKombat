@@ -1,0 +1,11 @@
+<% picA = Picture.offset(rand(Picture.count)).first %>
+<% picB = Picture.offset(rand(Picture.count)).first %>
+
+<div class = "row">
+	<div class = "col-md-5">
+		<%= image_tag picA.url, :class => "thumbnail" %>
+	</div>
+	<div class = "col-md-5">
+		<%= image_tag picB.url, :class => "thumbnail" %>
+	</div>
+</div>

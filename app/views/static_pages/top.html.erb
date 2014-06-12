@@ -1,2 +1,17 @@
-<h1>StaticPages#top</h1>
-<p>Find me in app/views/static_pages/top.html.erb</p>
+<h1>Top</h1>
+
+<% Picture.order(rating: :desc).limit(100).each do |pic| %>
+	<div class "row">
+		<div class="col-md-2">
+			<strong><%=pic.rating%></strong>
+		</div>
+		<div class="col-md-10">
+			<div class "row">
+				<%= pic.name%>
+			</div>
+			<div class "row">
+				<%= link_to image_tag(pic.url, :class => "thumbnail"), pic %>
+			</div>
+		</div>
+	</div>
+<%end%>
