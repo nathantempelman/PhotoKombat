@@ -10,7 +10,7 @@
 				<%= pic.name%>
 			</div>
 			<div class "row">
-				<%= link_to image_tag(pic.url, :class => "thumbnail"), pic %>
+				<%= link_to image_tag(imgur_large(pic.url), :class => "thumbnail"), pic %>
 			</div>
 		</div>
 	</div>

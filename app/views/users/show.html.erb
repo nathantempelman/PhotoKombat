@@ -28,7 +28,7 @@
   <div class="row">
     <div class=".col-xs-4 .col-sm-4 and .col-md-4">
     	<% @user.pictures.each do |picture| %>
-    	   <%= image_tag(imgur_small(picture.url), :class => "col-md-1 thumbnail img-responsive")%>
+         <%= link_to image_tag(imgur_big_square(picture.url), :class => "col-md-1 thumbnail img-responsive"), picture %>
     	<%end%>
     </div>
 	</div>

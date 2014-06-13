@@ -39,9 +39,14 @@ module PicturesHelper
 
 	end
 	# this one should return an imgur link for a thumbnail, 90x90
-	def imgur_small(url)
+	def imgur_small_square(url)
 		url.match(@@type1Regex) do |match|
 			"http://i.imgur.com/"+match[1]+"s"+"."+match[3]
+		end
+	end
+	def imgur_big_square(url)
+		url.match(@@type1Regex) do |match|
+			"http://i.imgur.com/"+match[1]+"b"+"."+match[3]
 		end
 	end
 	# this one should return an imgur link for a medium sized picture, 320x?
