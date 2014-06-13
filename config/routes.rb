@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/upload',   to: 'pictures#new',         via: 'get'
-  resources :pictures
+  resources :pictures do
+    collection do
+      get :compare
+      get :compare_submit
+    end
+  end
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

@@ -1,0 +1,12 @@
+<div class = "row">
+	<div class = "col-md-5">
+		<%= link_to compare_submit_pictures_path(winner_id: @pic_a.id, loser_id: @pic_b.id) do %>
+		  <%= image_tag @pic_a.url, :class => "thumbnail" %>
+		<% end %>
+	</div>
+	<div class = "col-md-5">
+		<%= link_to compare_submit_pictures_path(winner_id: @pic_b.id, loser_id: @pic_a.id) do %>
+		  <%= image_tag @pic_b.url, :class => "thumbnail" %>
+		<% end %>
+	</div>
+</div>

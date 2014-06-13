@@ -62,7 +62,23 @@ class PicturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def compare
+    # count query once, save the number
+    count = Picture.count
+#     Technically this isnt' random, as if 50 pictures in a row were deleted, 
+#     the next picture would have a 50x greater chance of being selected, but it's 
+#     close enough for now.  
+    @pic_a = Picture.offset(rand(count)).first
+    @pic_b = Picture.offset(rand(count)).first
+  end
 
+  def compare_submit
+    # Note variables are snake cased, not camel cased
+    pic_a = Picture.find(params[:winner_id])
+    pic_b = Picture.find(params[:loser_id])
+    pic_a.beats(pic_b)
+    redirect_to compare_pictures_url # Or wherever
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
