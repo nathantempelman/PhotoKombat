@@ -13,6 +13,9 @@ class Picture < ActiveRecord::Base
 	end
 	
 	def beats(loser)
+		if self.id = loser.id
+			return
+		end
 	    ea = 1/(1+10**((loser.rating-self.rating)/400))
 	    self.rating += 50*(1-ea)
 	    loser.rating += 50*(-(1-ea))

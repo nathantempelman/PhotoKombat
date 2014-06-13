@@ -65,11 +65,11 @@ class PicturesController < ApplicationController
   def compare
     # count query once, save the number
     count = Picture.count
-#     Technically this isnt' random, as if 50 pictures in a row were deleted, 
-#     the next picture would have a 50x greater chance of being selected, but it's 
-#     close enough for now.  
     @pic_a = Picture.offset(rand(count)).first
     @pic_b = Picture.offset(rand(count)).first
+    until @pic_a.id != @pic_b.id do
+      @pic_b = Picture.offset(rand(count)).first
+    end
   end
 
   def compare_submit
