@@ -72,7 +72,7 @@ class PicturesController < ApplicationController
   private
 
   def set_picture
-    @picture = Picture.find(params[:id]).includes(:user)
+    @picture = Picture.find(params[:id])
   end
 
   def picture_params
