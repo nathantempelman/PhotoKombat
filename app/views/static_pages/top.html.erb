@@ -7,7 +7,7 @@
 		</div>
 		<div class="col-md-10">
 			<div class "row">
-				<%= pic.name %> <% if pic.user %>by <%= pic.user.name %><% end %>
+				<%= pic.name %> <% if pic.user %>by <%= pic.user.username %><% end %>
 			</div>
 			<div class "row">
 				<%= link_to image_tag(imgur_large(pic.url), :class => "thumbnail"), pic %>

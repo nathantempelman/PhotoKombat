@@ -19,18 +19,18 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { email: 'another@example.com', name: 'Obiwan', password: '12345678' }
+      post :create, user: { email: 'another@example.com', username: 'Obiwan', password: '12345678' }
     end
     user = assigns(:user)
     assert_redirected_to user_path(user)
     assert_equal 'another@example.com', user.email
-    assert_equal 'Obiwan', user.name
+    assert_equal 'Obiwan', user.username
     assert_equal "Welcome to the site!", flash[:notice]
   end
 
   test "should not create user" do
     assert_no_difference('User.count') do
-      post :create, user: { email: 'another@example.com', name: 'Obiwan', password: '123' }
+      post :create, user: { email: 'another@example.com', username: 'Obiwan', password: '123' }
     end
     user = assigns(:user)
     assert_template :new
@@ -48,14 +48,14 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { email: 'new@example.com', name: "Another Name" }
+    patch :update, id: @user, user: { email: 'new@example.com', username: "Another Name" }
     assert_redirected_to user_path(assigns(:user))
-    assert_equal "Another Name", assigns(:user).name
+    assert_equal "Another Name", assigns(:user).username
     assert_equal "new@example.com", assigns(:user).email
   end
 
   test "should not update user" do
-    patch :update, id: @user, user: { email: @admin.email, name: "Another Name" }
+    patch :update, id: @user, user: { email: @admin.email, username: "Another Name" }
     assert_template :edit
     assert_equal 'Email has already been taken', flash[:error]
   end
