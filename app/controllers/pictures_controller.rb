@@ -1,33 +1,24 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_on_picture, only: [:create]
 
-  # GET /pictures
-  # GET /pictures.json
   def index
     @pictures = Picture.all
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
   end
 
-  # GET /pictures/new
   def new
     @picture = Picture.new
   end
 
-  # GET /pictures/1/edit
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
-    if signed_in?
-      @picture.user = current_user
-    end
+
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -39,8 +30,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
       if @picture.update(picture_params)
@@ -53,8 +42,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     @picture.destroy
     respond_to do |format|
@@ -62,13 +49,15 @@ class PicturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def compare
     # count query once, save the number
-    count = Picture.count
-    @pic_a = Picture.offset(rand(count)).first
-    @pic_b = Picture.offset(rand(count)).first
+    @count = Picture.count
+    return if @count < 2
+    @pic_a = Picture.offset(rand(@count)).first
+    @pic_b = Picture.offset(rand(@count)).first
     until @pic_a.id != @pic_b.id do
-      @pic_b = Picture.offset(rand(count)).first
+      @pic_b = Picture.offset(rand(@count)).first
     end
   end
 
@@ -79,14 +68,21 @@ class PicturesController < ApplicationController
     pic_a.beats(pic_b)
     redirect_to compare_pictures_url # Or wherever
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_picture
-      @picture = Picture.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def picture_params
-      params.require(:picture).permit(:name, :url, :user_id, :rating)
+  private
+
+  def set_picture
+    @picture = Picture.find(params[:id]).includes(:user)
+  end
+
+  def picture_params
+    params.require(:picture).permit(:name, :url, :user_id, :rating)
+  end
+
+  def set_user_on_picture
+    if signed_in?
+      @picture.user = current_user
     end
+  end
+
 end

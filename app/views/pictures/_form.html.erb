@@ -1,33 +1,27 @@
 <%= form_for(@picture) do |f| %>
-  <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
-      <ul>
-      <% @picture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'partials/errors', object: @picture %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, 'Name your photo:' %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :url %><br>
+    <%= f.label :url, 'Url (from imgur)' %><br>
     <%= f.text_field :url %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
-  </div>
+
+  <% unless @picture.new_record? %>
+    <div class="field">
+      <%= f.label :user_id %><br>
+      <%= f.number_field :user_id %>
+    </div>
+    <div class="field">
+      <%= f.label :rating %><br>
+      <%= f.number_field :rating %>
+    </div>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @picture.new_record? ? "Edit Photo" : "Upload Photo", class: "btn btn-large btn-primary" %>
   </div>
 <% end %>

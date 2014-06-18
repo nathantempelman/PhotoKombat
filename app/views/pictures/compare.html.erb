@@ -1,14 +1,16 @@
-<div class="center jumbotron">
-	<div class = "row">
-		<div class = "col-md-6">
-			<%= link_to compare_submit_pictures_path(winner_id: @pic_a.id, loser_id: @pic_b.id) do %>
-			  <%= image_tag imgur_large(@pic_a.url), :class => "thumbnail", :width => "100%" %>
-			<% end %>
-		</div>
-		<div class = "col-md-6">
-			<%= link_to compare_submit_pictures_path(winner_id: @pic_b.id, loser_id: @pic_a.id) do %>
-			  <%= image_tag imgur_large(@pic_b.url), :class => "thumbnail", :width => "100%" %>
-			<% end %>
-		</div>
-	</div>
-</div>
+<% unless @count < 2 %>
+  <div class="center jumbotron">
+  	<div class = "row">
+  		<div class = "col-md-6">
+  			<%= link_to compare_submit_pictures_path(winner_id: @pic_a.id, loser_id: @pic_b.id) do %>
+  			  <%= image_tag imgur_large(@pic_a.url), :class => "thumbnail", :width => "100%" %>
+  			<% end %>
+  		</div>
+  		<div class = "col-md-6">
+  			<%= link_to compare_submit_pictures_path(winner_id: @pic_b.id, loser_id: @pic_a.id) do %>
+  			  <%= image_tag imgur_large(@pic_b.url), :class => "thumbnail", :width => "100%" %>
+  			<% end %>
+  		</div>
+  	</div>
+  </div>
+<% end %>
