@@ -1,7 +1,5 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_on_picture, only: [:create]
-
   def index
     @pictures = Picture.all
   end
@@ -18,6 +16,7 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
+    set_user_on_picture
 
     respond_to do |format|
       if @picture.save
