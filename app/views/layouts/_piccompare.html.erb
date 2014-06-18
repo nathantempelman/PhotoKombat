@@ -1,6 +1,5 @@
-
-<!-- Technically this isnt' random, as if 50 pictures in a row were deleted, 
-the next picture would have a 50x greater chance of being selected, but it's 
+<!-- Technically this isnt' random, as if 50 pictures in a row were deleted,
+the next picture would have a 50x greater chance of being selected, but it's
 close enough for now.  -->
 <% picA = Picture.offset(rand(Picture.count)).first %>
 <% picB = Picture.offset(rand(Picture.count)).first %>
