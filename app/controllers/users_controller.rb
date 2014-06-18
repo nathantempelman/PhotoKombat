@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user,      only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin,    only: :destroy
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, only: :destroy
 
   def index
     @users = User.all
@@ -18,13 +18,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the site!"
+      flash[:notice] = "Welcome to the site!"
       redirect_to @user
     else
-      flash.now[:error] = @user.errors.full_messages.join("<br/>").html_safe
+      flash[:error] = @user.errors.full_messages.join("<br/>").html_safe
       render 'new'
     end
   end
@@ -32,16 +31,20 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:error] = @user.errors.full_messages.to_sentence
+          render :edit
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
+
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -60,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def authenticate_admin
-    redirect_to(root_url) unless current_user.admin?
+    redirect_to(root_url) unless current_user.admin
   end
 
 end

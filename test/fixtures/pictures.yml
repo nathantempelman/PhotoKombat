@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  url: MyString
-  user_id: 1
-  rating: 1
+  url: http://i.imgur.com/3jlE14ol.gif
+  user_id: one
+  rating: 1500
 
 two:
   name: MyString
-  url: MyString
-  user_id: 1
-  rating: 1
+  url: http://i.imgur.com/3jlE14ol.gif
+  user_id: two
+  rating: 1500
