@@ -77,7 +77,7 @@ class PicturesController < ApplicationController
   end
 
   def set_picture
-    @picture = Picture.find(params[:id])
+    @picture = @category.pictures.find(params[:id])
   end
 
   def picture_params
