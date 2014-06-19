@@ -1,7 +1,7 @@
 module PicturesHelper
-	@@type1Regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)imgur\.com\/((?:\w|\d){7})(\w)?(?:\.(gif|jpg|png))\z/i
-	@@type2Regex = /\A(?:https?:\/\/)?(?:www\.)?imgur\.com\/((?:\w|\d){7})(\w)?\z/i
-	@@imgur_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)?imgur\.com\/(?:gallery\/)?((?:\w|\d){7}|(?:\w|\d){5})(\w)?(?:\.(gif|jpg|png))?\z/i
+	@@type1Regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)imgur\.com\/((?:\w|\d){5,7})(\w)?(?:\.(gif|jpg|png))\z/i
+	@@type2Regex = /\A(?:https?:\/\/)?(?:www\.)?imgur\.com\/((?:\w|\d){5,7})(\w)?\z/i
+	@@imgur_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)?imgur\.com\/(?:gallery\/)?((?:\w|\d){5,7}|(?:\w|\d){5})(\w)?(?:\.(gif|jpg|png))?\z/i
 
   # 3 types of imgur links, in order of desirability
 	#
