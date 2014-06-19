@@ -1,6 +1,5 @@
 module PicturesHelper
-	@@type1Regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)imgur\.com\/((?:\w|\d){5,7})(\w)?(?:\.(gif|jpg|png))\z/i
-	@@type2Regex = /\A(?:https?:\/\/)?(?:www\.)?imgur\.com\/((?:\w|\d){5,7})(\w)?\z/i
+	@@picsize_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)imgur\.com\/((?:\w|\d){5,7})(\w)?(?:\.(gif|jpg|png))\z/i
 	@@imgur_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)?imgur\.com\/(?:gallery\/)?((?:\w|\d){5,7}|(?:\w|\d){5})(\w)?(?:\.(gif|jpg|png))?\z/i
 
   # 3 types of imgur links, in order of desirability
@@ -47,27 +46,27 @@ module PicturesHelper
 
 	# this one should return an imgur link for a thumbnail, 90x90
 	def imgur_small_square(url)
-		url.match(@@type1Regex) do |match|
+		url.match(@@picsize_regex) do |match|
 			"http://i.imgur.com/"+match[1]+"s"+"."+match[3]
 		end
 	end
 
 	def imgur_big_square(url)
-		url.match(@@type1Regex) do |match|
+		url.match(@@picsize_regex) do |match|
 			"http://i.imgur.com/"+match[1]+"b"+"."+match[3]
 		end
 	end
 
 	# this one should return an imgur link for a medium sized picture, 320x?
 	def imgur_medium(url)
-		url.match(@@type1Regex) do |match|
+		url.match(@@picsize_regex) do |match|
 			"http://i.imgur.com/"+match[1]+"m"+"."+match[3]
 		end
 	end
 
 	# this one should return an imgur link for a large sized picture, 640x?
 	def imgur_large(url)
-		url.match(@@type1Regex) do |match|
+		url.match(@@picsize_regex) do |match|
 			"http://i.imgur.com/"+match[1]+"l"+"."+match[3]
 		end
 	end
