@@ -5,9 +5,11 @@ one:
   url: http://i.imgur.com/3jlE14ol.gif
   user_id: one
   rating: 1500
+  category: one
 
 two:
   name: MyString
   url: http://i.imgur.com/3jlE14ol.gif
   user_id: two
   rating: 1500
+  category: one

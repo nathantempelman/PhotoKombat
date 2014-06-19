@@ -1,0 +1,17 @@
+<h1>Top Pictures for <%= @category.name %></h1>
+
+<% @pictures.each do |picture| %>
+  <div class="row">
+    <div class="col-md-2">
+      <strong><%=picture.rating%></strong>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <%= picture.name %> <% if picture.user %>by <%= picture.user.username %><% end %>
+      </div>
+      <div class="row">
+        <%= link_to image_tag(imgur_large(picture.url), :class => "thumbnail"), category_picture_path(@category, picture) %>
+      </div>
+    </div>
+  </div>
+<%end%>
