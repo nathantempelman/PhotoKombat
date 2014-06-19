@@ -1,0 +1,14 @@
+<h1>Categories</h1>
+
+<div class="row clearfix">
+  <% @categories.each do |category| %>
+    <%= link_to compare_category_path(category), class: "pull-left" do %>
+      <%= category.name %>
+      <%= image_tag imgur_medium(category.top_image_url), :class => "thumbnail" %>
+    <% end %>
+  <% end %>
+
+  <div class="clear"></div>
+</div>
+
+<%= link_to 'New Category', new_category_path %>

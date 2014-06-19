@@ -1,17 +1,3 @@
 <h1>Top</h1>
 
-<% Picture.order(rating: :desc).limit(100).each do |pic| %>
-	<div class "row">
-		<div class="col-md-2">
-			<strong><%=pic.rating%></strong>
-		</div>
-		<div class="col-md-10">
-			<div class "row">
-				<%= pic.name %> <% if pic.user %>by <%= pic.user.username %><% end %>
-			</div>
-			<div class "row">
-				<%= link_to image_tag(imgur_large(pic.url), :class => "thumbnail"), pic %>
-			</div>
-		</div>
-	</div>
-<%end%>
+

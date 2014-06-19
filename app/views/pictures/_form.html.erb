@@ -1,23 +1,23 @@
-<%= form_for(@picture) do |f| %>
+<%= form_for [@category, @picture] do |f| %>
   <%= render 'partials/errors', object: @picture %>
 
   <div class="field">
     <%= f.label :name, 'Name your photo:' %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :url, 'Url (from imgur)' %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class: 'form-control' %>
   </div>
 
   <% unless @picture.new_record? %>
     <div class="field">
       <%= f.label :user_id %><br>
-      <%= f.number_field :user_id %>
+      <%= f.number_field :user_id, class: 'form-control' %>
     </div>
     <div class="field">
       <%= f.label :rating %><br>
-      <%= f.number_field :rating %>
+      <%= f.number_field :rating, class: 'form-control' %>
     </div>
   <% end %>
 

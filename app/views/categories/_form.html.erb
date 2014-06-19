@@ -1,0 +1,12 @@
+<%= form_for(@category) do |f| %>
+  <%= render 'partials/errors', object: @category %>
+
+  <div class="field">
+    <%= f.label :name, 'Name your category:' %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Save Category', class: 'btn btn-primary' %>
+  </div>
+<% end %>

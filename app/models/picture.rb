@@ -2,6 +2,7 @@ class Picture < ActiveRecord::Base
   include PicturesHelper
   before_create :default_values
   belongs_to :user
+  belongs_to :category
 
   VALID_IMGUR_REGEX = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)?imgur\.com\/(?:gallery\/)?((?:\w|\d){7}|(?:\w|\d){5})(\w)?(?:\.(gif|jpg|png))?\z/i
   validates :url, presence: true

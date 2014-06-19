@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+  before_action :set_category, except: :new
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   def index
     @pictures = Picture.all
@@ -8,6 +9,7 @@ class PicturesController < ApplicationController
   end
 
   def new
+    @category = Category.find_by(handle: params[:handle])
     @picture = Picture.new
   end
 
@@ -15,12 +17,12 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.new(picture_params)
+    @picture = @category.pictures.build(picture_params)
     set_user_on_picture
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+        format.html { redirect_to [@category, @picture], notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new }
@@ -32,7 +34,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        format.html { redirect_to [@category, @picture], notice: 'Picture was successfully updated.' }
         format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -44,7 +46,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+      format.html { redirect_to compare_category_path(@category), notice: 'Picture was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,13 +67,17 @@ class PicturesController < ApplicationController
     pic_a = Picture.find(params[:winner_id])
     pic_b = Picture.find(params[:loser_id])
     pic_a.beats(pic_b)
-    redirect_to compare_pictures_url # Or wherever
+    redirect_to compare_category_path(@category) # Or wherever
   end
 
   private
 
+  def set_category
+    @category = Category.find_by(handle: params[:category_handle])
+  end
+
   def set_picture
-    @picture = Picture.find(params[:id])
+    @picture = @category.pictures.find(params[:id])
   end
 
   def picture_params
