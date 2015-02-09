@@ -8,10 +8,14 @@ gem 'rails', '4.1.1'
 gem 'bootstrap-sass', '~> 3.1.1'
 #password hashing gem
 gem 'bcrypt-ruby', '~>3.1.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
-gem 'pg'
+group :development, :test do # <<<< :development, not devlopment
+  # Use sqlite3 as the database for Active Record
+	gem 'sqlite3'
+end
+group :production do
+	gem 'pg'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
