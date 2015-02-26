@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	validates :username, presence: true, length: {minimum: 3, maximum: 22}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+\.[a-z]+\z/i
-	validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+	validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX}, if: :email?
 	has_secure_password
 	validates :password, length: {minimum: 6}, if: :changed_password?
 
