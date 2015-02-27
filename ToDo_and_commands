@@ -1,0 +1,13 @@
+To Do:
+
+-fix user signout
+-add K to rating algorithm
+	-add times rated to pictures
+-make admins work better
+	-don't allow anybody but the user and an admin to edit a user account
+
+
+
+Useful Commands
+start local server	: rails s
+push to heroku		: git push -f heroku
