@@ -1,6 +1,6 @@
 To Do:
 
--fix user signout
+xx-fix user signout
 -add K to rating algorithm
 	-add times rated to pictures
 -make admins work better
@@ -10,7 +10,8 @@ To Do:
 	-add tag on categories
 	-add NSFWable on accounts
 	-make NSFW categores ask if you're 18 or check if you're 18 when you're signed in
-
+-make descriptions for categories?
+-pageinate top list 
 
 
 
