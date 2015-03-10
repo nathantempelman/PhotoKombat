@@ -6,7 +6,7 @@ xx-fix user signout
 -make admins work better
 	-don't allow anybody but the user and an admin to edit a user account
 -make different styles available for categories?
--SFW and NSFW categories
+-SFW and NSFW categories?
 	-add tag on categories
 	-add NSFWable on accounts
 	-make NSFW categores ask if you're 18 or check if you're 18 when you're signed in
