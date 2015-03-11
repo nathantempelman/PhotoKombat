@@ -1,6 +1,6 @@
 <% unless @count < 2 %>
   <div class="center jumbotron">
-    <div class= "text-center"><h1><strong>Choose the winner<strong></h1></div>
+    <div class= "text-center"><h1>Who wins?</h1></div>
   	<div class = "row">
   		<div class = "col-md-6">
   			<%= link_to compare_submit_category_pictures_path(@category, winner_id: @pic_a.id, loser_id: @pic_b.id), method: :post do %>
