@@ -19,8 +19,8 @@ class Picture < ActiveRecord::Base
       return nil
     end
     ea = 1/(1+10**((loser.rating-self.rating)/400))
-    self.rating += 50*(1-ea)
-    loser.rating += 50*(-(1-ea))
+    self.rating  += 50*(1-ea)
+    loser.rating -= 50*(1-ea)
     self.save
     loser.save
   end
