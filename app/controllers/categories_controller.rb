@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy, :compare, :top]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :compare, :top, :compare_submit]
 
   def index
     @categories = Category.all
@@ -10,18 +10,27 @@ class CategoriesController < ApplicationController
   end
 
   def compare
-    # count query once, save the number
     @count = @category.pictures.count
     return if @count < 2
-    @pic_a = @category.pictures.offset(rand(@count)).first
-    @pic_b = @category.pictures.offset(rand(@count)).first
+
+    @pic_a = @category.random_image(@count)
+    @pic_b = @category.random_image(@count)
     until @pic_a.id != @pic_b.id do
-      @pic_b = @category.pictures.offset(rand(@count)).first
+      @pic_b = @category.random_image(@count)
     end
   end
 
+  def compare_submit
+    # Note variables are snake cased, not camel cased
+    pic_a = Picture.find(params[:winner_id])
+    pic_b = Picture.find(params[:loser_id])
+    pic_a.beats(pic_b)
+    redirect_to compare_category_path(@category) # Or wherever
+  end
+
   def top
-    @pictures = @category.pictures.order(rating: :desc).limit(100)
+    @pictures = @category.pictures.order(rating: :desc).limit(100).to_a
+    @top_picture = @pictures.shift
   end
 
   def new

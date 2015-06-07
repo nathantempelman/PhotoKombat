@@ -1,0 +1,45 @@
+.card {
+  width: 25%;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+    opacity: 1;
+
+    -webkit-transition: opacity 1s;
+    transition: opacity 1s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  a {
+    position: relative;
+
+    h2, .top_image_message {
+      position: absolute;
+      top: -67px;
+      left: 0;
+      width: 67%;
+      background: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      padding: 5px;
+      padding-left:10px;
+      display: none;
+      line-height: 28px;
+    }
+  }
+}
+
+.hover {
+  display: block !important;
+}
+
+@media (min-width:630px) and (max-width:991px) {
+  .card { width: 50%; }
+}
+
+@media (max-width:630px) {
+  .card { width: 100%; }
+}

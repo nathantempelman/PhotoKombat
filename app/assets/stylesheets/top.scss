@@ -1,0 +1,29 @@
+.top.jumbotron {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #fff;
+  max-height: 500px;
+  margin-bottom: 0;
+
+  background-size: cover !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  object-fit: cover !important;
+
+
+  h1 {
+    margin-left: -10px;
+  }
+
+  .container span {
+    font-style: italic;
+    font-weight: 100;
+  }
+
+  .jumbotron-text {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.42);
+  }
+}

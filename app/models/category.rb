@@ -15,6 +15,10 @@ class Category < ActiveRecord::Base
     "http://i.imgur.com/74FVTpV.jpg"
   end
 
+  def random_image(count)
+    pictures.offset(rand(count)).first
+  end
+
   private
 
   def set_handle

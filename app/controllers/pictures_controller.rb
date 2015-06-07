@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_category, except: :new
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+
   def index
     @pictures = Picture.all
   end
@@ -18,7 +19,7 @@ class PicturesController < ApplicationController
 
   def create
     @picture = @category.pictures.build(picture_params)
-    set_user_on_picture
+    @picture.user = current_user if signed_in?
 
     respond_to do |format|
       if @picture.save
@@ -51,25 +52,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  def compare
-    # count query once, save the number
-    @count = Picture.count
-    return if @count < 2
-    @pic_a = Picture.offset(rand(@count)).first
-    @pic_b = Picture.offset(rand(@count)).first
-    until @pic_a.id != @pic_b.id do
-      @pic_b = Picture.offset(rand(@count)).first
-    end
-  end
-
-  def compare_submit
-    # Note variables are snake cased, not camel cased
-    pic_a = Picture.find(params[:winner_id])
-    pic_b = Picture.find(params[:loser_id])
-    pic_a.beats(pic_b)
-    redirect_to compare_category_path(@category) # Or wherever
-  end
-
   private
 
   def set_category
@@ -83,11 +65,4 @@ class PicturesController < ApplicationController
   def picture_params
     params.require(:picture).permit(:name, :url, :user_id, :rating)
   end
-
-  def set_user_on_picture
-    if signed_in?
-      @picture.user = current_user
-    end
-  end
-
 end

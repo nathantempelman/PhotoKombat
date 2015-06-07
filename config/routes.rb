@@ -8,16 +8,13 @@ Rails.application.routes.draw do
   resources :categories, param: :handle, path: '/r' do
     member do
      get :compare
+     post :compare_submit
      get :top
      get :upload, to: 'pictures#new', as: :upload_pictures
      post :upload, to: 'pictures#create'
     end
 
-    resources :pictures do
-      collection do
-        post :compare_submit
-      end
-    end
+    resources :pictures
   end
 
   resources :users do

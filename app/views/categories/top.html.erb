@@ -1,17 +1,24 @@
-<h1>Top Pictures for <%= @category.name %></h1>
-
-<% @pictures.each do |picture| %>
-  <div class="row">
-    <div class="col-md-2">
-      <strong><%=picture.rating%></strong>
-    </div>
-    <div class="col-md-10">
-      <div class="row">
-        <%= picture.name %> <% if picture.user %>by <%= picture.user.username %><% end %>
-      </div>
-      <div class="row">
-        <%= link_to image_tag(imgur_large(picture.url), :class => "thumbnail"), category_picture_path(@category, picture) %>
-      </div>
+<div class="top jumbotron" style="background: url('<%= @top_picture.url %>');">
+  <div class="container">
+    <div class="jumbotron-text">
+      <h1>Top Pictures for <%= @category.name %></h1>
+      <p>Top Rating: <%= @top_picture.rating %></p>
+      <span><%= @top_picture.name %> <% if @top_picture.user %>by <%= @top_picture.user.username %><% end %></span>
     </div>
   </div>
-<%end%>
+</div>
+
+<div class="card-container">
+  <% @pictures.each do |picture| %>
+    <div class="card">
+      <%= link_to category_picture_path(@category, picture) do %>
+        <%= image_tag(imgur_large(picture.url)) %>
+        <div class="top_image_message">
+          <h3 class="rating">Rated: <%= picture.rating %></h3>
+          <span class="message"><%= picture.name %> <% if picture.user %>by <%= picture.user.username %><% end %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

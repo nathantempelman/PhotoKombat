@@ -1,17 +1,16 @@
-<% unless @count < 2 %>
-  <div class="center jumbotron">
-    <div class= "text-center"><h1>Who wins?</h1></div>
-  	<div class = "row">
-  		<div class = "col-md-6">
-  			<%= link_to compare_submit_category_pictures_path(@category, winner_id: @pic_a.id, loser_id: @pic_b.id), method: :post do %>
-  			  <%= image_tag imgur_large(@pic_a.url), :class => "thumbnail", :width => "100%" %>
-  			<% end %>
-  		</div>
-  		<div class = "col-md-6">
-  			<%= link_to compare_submit_category_pictures_path(@category, winner_id: @pic_b.id, loser_id: @pic_a.id), method: :post do %>
-  			  <%= image_tag imgur_large(@pic_b.url), :class => "thumbnail", :width => "100%" %>
-  			<% end %>
-  		</div>
-  	</div>
+<div class= "text-center"><h1>Who wins?</h1></div>
+<div class="container">
+
+  <div class="col-md-6">
+    <%= link_to compare_submit_category_path(@category, winner_id: @pic_a.id, loser_id: @pic_b.id), method: :post do %>
+      <div class="thumbnail pic-compare" style="background-image: url('<%=imgur_large(@pic_a.url)%>')">&nbsp;</div>
+    <% end %>
   </div>
-<% end %>
+
+  <div class="col-md-6">
+    <%= link_to compare_submit_category_path(@category, winner_id: @pic_b.id, loser_id: @pic_a.id), method: :post do %>
+      <div class="thumbnail pic-compare" style="background-image: url('<%=imgur_large(@pic_b.url)%>')">&nbsp;</div>
+    <% end %>
+  </div>
+  
+</div>

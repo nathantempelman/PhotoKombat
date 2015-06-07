@@ -1,0 +1,38 @@
+.navbar-nav > li > a {
+  padding: 0 15px;
+}
+
+.navbar-default {
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 0px;
+}
+
+.navbar-primary {
+  background-color: #fff;
+  border-bottom: 1px solid #727A87;
+
+  .navbar-brand {
+    font-size: 1.5em;
+    padding: 0;
+    height: auto;
+
+    a {
+      font-family: "Roboto Slab", serif;
+      color: #000;
+    }
+  }
+}
+
+.navbar-header {
+  float: left;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer {
+  height: 200px;
+  margin-top: 0;
+  background: #3B4350 none repeat scroll 0% 0%;
+}

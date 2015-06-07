@@ -34,17 +34,16 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html {
+        format.html do
           flash[:error] = @user.errors.full_messages.to_sentence
           render :edit
-        }
+        end
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
