@@ -1,5 +1,5 @@
-<div class= "text-center"><h1>Who wins?</h1></div>
-<div class="container">
+<div class="container compare-container">
+  <h1 class= "text-center">Who wins?</h1>
 
   <div class="col-md-6">
     <%= link_to compare_submit_category_path(@category, winner_id: @pic_a.id, loser_id: @pic_b.id), method: :post do %>
@@ -12,5 +12,4 @@
       <div class="thumbnail pic-compare" style="background-image: url('<%=imgur_large(@pic_b.url)%>')">&nbsp;</div>
     <% end %>
   </div>
-  
 </div>

@@ -10,15 +10,41 @@
 
 <div class="card-container">
   <% @pictures.each do |picture| %>
-    <div class="card">
-      <%= link_to category_picture_path(@category, picture) do %>
+    <div class="card top-image-card">
+      <div class="top-image-link" data-url="<%=category_picture_url(@category, picture)%>">
         <%= image_tag(imgur_large(picture.url)) %>
         <div class="top_image_message">
           <h3 class="rating">Rated: <%= picture.rating %></h3>
           <span class="message"><%= picture.name %> <% if picture.user %>by <%= picture.user.username %><% end %></span>
         </div>
-      <% end %>
+      </div>
     </div>
   <% end %>
 </div>
+c
+<div class="modal fade" id="pictureModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">&nbsp;</h4>
+      </div>
+      <div class="modal-body">
+        &nbsp;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+  $('.top-image-link').on('click', function(ev) {
+      $.get($(this).data('url'), function( data ) {
+        $('#pictureModal .modal-title').html( data.name + " (Rated " + data.rating + ")" );
+        $('#pictureModal .modal-body').html( "<img src=\"" + data.url + "\" alt=\"" + data.name + "\">" );
+        $('#pictureModal').modal('show');
+      });
+  });
+</script>

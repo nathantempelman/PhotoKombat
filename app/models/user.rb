@@ -1,6 +1,7 @@
-class User < ActiveRecord::Base
+class User < BaseModel
 	before_create :create_remember_token
 	has_many :pictures
+  has_many :activities, as: :owner
 
 	validates :username, presence: true, length: {minimum: 3, maximum: 22}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+\.[a-z]+\z/i
@@ -24,6 +25,24 @@ class User < ActiveRecord::Base
 
    def changed_password?
     password.present? && self.password_digest_changed?
+  end
+
+  class << self
+    def current_user=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current_user
+      Thread.current[:current_user]
+    end
+
+    def current_ip_address=(ip)
+      Thread.current[:current_ip_address] = ip
+    end
+
+    def current_ip_address
+      Thread.current[:current_ip_address]
+    end
   end
 
 end

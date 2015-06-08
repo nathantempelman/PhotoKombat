@@ -14,12 +14,25 @@
     }
   }
 
-  a {
+  a, .top-image-link {
     position: relative;
 
-    h2, .top_image_message {
+    h2 {
       position: absolute;
       top: -67px;
+      left: 0;
+      width: 67%;
+      background: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      padding: 5px;
+      padding-left:10px;
+      display: none;
+      line-height: 28px;
+    }
+
+    .top_image_message {
+      position: absolute;
+      top: 0px;
       left: 0;
       width: 67%;
       background: rgba(255, 255, 255, 0.85);

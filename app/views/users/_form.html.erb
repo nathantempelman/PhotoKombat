@@ -1,5 +1,5 @@
-<%= form_for(@user) do |f| %>
-  <%= render 'partials/errors', object: @user %>
+<%= form_for user do |f| %>
+  <%= render 'partials/errors', object: user %>
 
   <div class="field">
     <%= f.label :username %><br>
@@ -18,6 +18,6 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit @user.new_record? ? 'Create my account' : 'Edit your profile', class: 'btn btn-primary' %>
+    <%= f.submit user.new_record? ? 'Create my account' : 'Save my profile', class: 'btn btn-primary' %>
   </div>
 <% end %>

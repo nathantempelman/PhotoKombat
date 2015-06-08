@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy, :compare, :top, :compare_submit]
+  before_action :authenticate, only: [:compare, :compare_submit]
 
   def index
     @categories = Category.all
@@ -75,11 +76,11 @@ class CategoriesController < ApplicationController
   end
 
   private
-    def set_category
-      @category = Category.find_by(handle: params[:handle])
-    end
+  def set_category
+    @category = Category.find_by(handle: params[:handle])
+  end
 
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end

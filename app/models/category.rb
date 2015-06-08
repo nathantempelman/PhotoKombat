@@ -1,4 +1,4 @@
-class Category < ActiveRecord::Base
+class Category < BaseModel
   validates :name, uniqueness: true, presence: true
   has_many :pictures
 

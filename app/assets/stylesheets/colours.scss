@@ -1,2 +1,31 @@
-$darkBlue: '#3B4350';
-$lightBlue: '727A87';
+$darkBlue: #3B4350;
+$lightBlue: #727A87;
+
+/* colour overrides */
+
+.btn-primary {
+  background-color: $darkBlue;
+  border-color: $lightBlue;
+  &:hover {
+    background-color: $lightBlue;
+  }
+}
+
+.glyphicon {
+  color: $darkBlue;
+}
+
+footer a {
+  color: #fff;
+  &:visited {
+    color: $lightBlue;
+  }
+}
+
+.pagination > li > a, .pagination > li > span{
+  color: $darkBlue;
+  &:visited {
+    color: $lightBlue;
+  }
+}
+

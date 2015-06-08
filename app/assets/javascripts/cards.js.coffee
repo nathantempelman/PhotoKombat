@@ -14,3 +14,10 @@ $(document).on 'page:change', ->
   ), ->
     $(this).find('h2').removeClass 'hover'
     $(this).find('.top_image_message').removeClass 'hover'
+
+  $('.card .top-image-link').hover (->
+    $(this).find('h2').addClass 'hover'
+    $(this).find('.top_image_message').addClass 'hover'
+  ), ->
+    $(this).find('h2').removeClass 'hover'
+    $(this).find('.top_image_message').removeClass 'hover'

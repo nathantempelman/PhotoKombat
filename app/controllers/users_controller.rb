@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html { redirect_to edit_user_path(@user) }
+      format.json
+    end
   end
 
   def new
@@ -14,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @activities = @user.activities.paginate(page: params[:page], per_page: 10)
   end
 
   def create
@@ -31,7 +36,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html do
@@ -59,10 +64,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
-  end
-
-  def authenticate_admin
-    redirect_to(root_url) unless current_user.admin
   end
 
 end

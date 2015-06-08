@@ -1,12 +1,16 @@
 class PicturesController < ApplicationController
   before_action :set_category, except: :new
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, only: [:edit, :update, :destroy]
 
   def index
     @pictures = Picture.all
   end
 
   def show
+    respond_to do |format|
+      format.json
+    end
   end
 
   def new

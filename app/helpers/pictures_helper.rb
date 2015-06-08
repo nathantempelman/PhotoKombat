@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 module PicturesHelper
 	@@picsize_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)imgur\.com\/((?:\w|\d){5,7})(\w)?(?:\.(gif|jpg|png))\z/i
 	@@imgur_regex = /\A(?:https?:\/\/)?(?:www\.)?(?:i\.)?imgur\.com\/(?:gallery\/)?((?:\w|\d){5,7}|(?:\w|\d){5})(\w)?(?:\.(gif|jpg|png))?\z/i
@@ -69,5 +71,10 @@ module PicturesHelper
 		url.match(@@picsize_regex) do |match|
 			"http://i.imgur.com/"+match[1]+"l"+"."+match[3]
 		end
+	end
+
+	def gravatar_image(email, size=500)
+		hash = Digest::MD5.hexdigest(email.downcase)
+		"http://www.gravatar.com/avatar/#{hash}?s=#{size}"
 	end
 end

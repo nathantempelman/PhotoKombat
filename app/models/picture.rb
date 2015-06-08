@@ -15,9 +15,11 @@ class Picture < ActiveRecord::Base
 
   def beats(loser)
     if self.id == loser.id
-      puts "whaaat"
       return nil
     end
+
+    Activity.register_activity(User.current_user, self, "photo combatted!", User.current_ip_address, { winning_image: self.url, losing_image: loser.url })
+
     ea = 1.0/(1.0+10**((loser.rating-self.rating)/400.0))
     self.rating  += 50.0*(1.0-ea)
     loser.rating -= 50.0*(1.0-ea)

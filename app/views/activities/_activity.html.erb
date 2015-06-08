@@ -1,0 +1,24 @@
+<li class="media">
+  <div class="media-left">
+    <a href="#">
+      <span class="media-object glyphicon <%= glyphicon_class_for_action(activity.action) %>" style="font-size: 30px;"></span>
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= activity.owner.username %> <%= activity.action %> <%= key_word_for_activity(activity, current_user) %>
+      <span title="<%=activity.created_at.to_formatted_s(:long)%>"><small><%= distance_of_time_in_words_to_now(activity.created_at) %> ago from <%= activity.ip_address %></small></span>
+    </h4>
+
+    <% if activity.parameters.present? %>
+      <a href="#changes-<%= activity.id %>" data-id="<%=activity.id%>" class="see-more" data-shown="false">See More...</a>
+      <div class="changes hide" id="changes-<%= activity.id %>">
+        <% activity.parameters.each do |key, value| %>
+          <dl>
+            <dt><%= key.to_s.humanize %></dt>
+            <dd><%= format_params_value(key,value) %></dd>
+          </dl>
+        <% end %>
+      </div>
+    <% end %>
+</li>
